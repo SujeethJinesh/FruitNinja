@@ -643,7 +643,7 @@ MonoBehaviour:
   minForce: 18
   maxForce: 22
   maxLifetime: 5
-  initialDelay: 2
+  initialDelay: 0
 --- !u!65 &1777248349
 BoxCollider:
   m_ObjectHideFlags: 0

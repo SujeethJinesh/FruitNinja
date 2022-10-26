@@ -4,8 +4,8 @@ public class Blade : MonoBehaviour
 {
     private Camera mainCamera;
     private bool slicing;
-    private Collider bladeCollider;
-    private TrailRenderer bladeTrail;
+    private Collider sliceCollider;
+    private TrailRenderer sliceTrail;
 
     public Vector3 direction { get; private set; }
     public float sliceForce = 5f;
@@ -13,9 +13,9 @@ public class Blade : MonoBehaviour
 
     private void Awake()
     {
-        bladeCollider = GetComponent<Collider>();
         mainCamera = Camera.main;
-        bladeTrail = GetComponentInChildren<TrailRenderer>();
+        sliceCollider = GetComponent<Collider>();
+        sliceTrail = GetComponentInChildren<TrailRenderer>();
     }
 
     private void OnEnable()
@@ -50,16 +50,16 @@ public class Blade : MonoBehaviour
         transform.position = newPosition;
 
         slicing = true;
-        bladeCollider.enabled = true;
-        bladeTrail.enabled = true;
-        bladeTrail.Clear();
+        sliceCollider.enabled = true;
+        sliceTrail.enabled = true;
+        sliceTrail.Clear();
     }
 
     private void StopSlicing()
     {
         slicing = false;
-        bladeCollider.enabled = false;
-        bladeTrail.enabled = false;
+        sliceCollider.enabled = false;
+        sliceTrail.enabled = false;
     }
 
     private void ContinueSlicing()
@@ -70,7 +70,7 @@ public class Blade : MonoBehaviour
         direction = newPosition - transform.position; // direction blade is moving
 
         float velocity = direction.magnitude / Time.deltaTime;
-        bladeCollider.enabled = velocity > minSliceVelocity;
+        sliceCollider.enabled = velocity > minSliceVelocity;
 
         transform.position = newPosition;
     }

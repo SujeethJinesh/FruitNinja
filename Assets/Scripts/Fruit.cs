@@ -16,10 +16,10 @@ public class Fruit : MonoBehaviour
 
     private void Slice(Vector3 direction, Vector3 position, float force)
     {
+        fruitCollider.enabled = false;
         whole.SetActive(false);
         sliced.SetActive(true);
 
-        fruitCollider.enabled = false;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         sliced.transform.rotation = Quaternion.Euler(0f, 0f, angle); // rotate to where we sliced the fruit at
